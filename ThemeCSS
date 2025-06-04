@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700,800&display=swap');
+
+/* --- Responsive variables and fluid spacing --- */
+:root {
+  --gap: clamp(8px, 1vw, 16px);
+}
+
+/* --- Card container with fluid width --- */
+.wFormContainer {
+  width: min(100%, 90vw);
+  max-width: 480px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(34,52,106,0.09);
+  padding: 28px 18px 16px 18px;
+  margin: 32px auto;
+  border: 1.2px solid #E8EDF1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Fluid heading typography --- */
+.wForm h4,
+.wForm .htmlContent h4 {
+  font-family: 'Overpass', Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.25rem, 2.5vw, 1.4rem);
+  color: #22346A;
+  margin: 0 0 22px 0;
+  text-align: center;
+  line-height: 1.19;
+}
+
+/* --- Make ALL inline.group sections use row-based flex --- */
+.section.inline.group {
+  display: flex !important;
+  flex-direction: row;
+  gap: var(--gap);
+  width: 100%;
+  margin-bottom: var(--gap);
+  align-items: flex-end;
+}
+
+/* --- Every field container full-width, flex:1 when siblings present --- */
+.field-container-D {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0 !important;
+  align-items: stretch;
+}
+
+/* If a field is the only child in its inline group, it stays full-width */
+.section.inline.group > .field-container-D:only-child {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* --- Conditional fields hidden until visible --- */
+.field-container-D {
+  display: none;
+  transition: all 0.1s;
+}
+.field-container-D.tfa-field-visible {
+  display: flex !important;
+}
+.field-container-D input {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+/* --- Field styling --- */
+.inputWrapper,
+.inputWrapper input[type="text"],
+.inputWrapper input[type="email"],
+.inputWrapper input[type="tel"],
+.inputWrapper select {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+.inputWrapper input,
+.inputWrapper select {
+  border-radius: 7px;
+  border: 1.2px solid #E8EDF1;
+  background: #F8F9FB;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #22346A;
+  margin-bottom: 0;
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.inputWrapper input:focus,
+.inputWrapper select:focus {
+  border-color: #22346A;
+  outline: none;
+  box-shadow: 0 1px 7px rgba(34,52,106,0.09);
+}
+
+/* --- Normalize dropdown appearance --- */
+.inputWrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+}
+.inputWrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+  line-height: 1.5;
+  padding: 10px 12px;
+  height: 38px;
+}
+
+/* --- Checkbox row formatting --- */
+.field-container-D[role="group"] {
+  width: 100%;
+  margin: var(--gap) 0 0 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.label.postField {
+  margin-left: 6px;
+  font-size: 0.92em;
+}
+.input-checkbox-faux {
+  width: 17px;
+  height: 17px;
+  border: 2px solid #22346A;
+  border-radius: 4px;
+  background: #fff;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* --- SMS consent: smaller text --- */
+.field-container-D .delimiterAfter,
+.field-container-D .delimiter {
+  font-size: 0.67rem !important;
+  color: #575859;
+  line-height: 1.19;
+}
+.field-container-D .label.preField[data-tfa-check-label-for] {
+  font-size: 0.74rem !important;
+  font-weight: 600;
+  color: #22346A;
+  margin-bottom: 0;
+}
+
+/* --- Submit button --- */
+.actions {
+  width: 100%;
+  margin-top: var(--gap);
+}
+.primaryAction,
+#submit_button {
+  display: block;
+  width: 100%;
+  background: linear-gradient(90deg, #22346A 65%, #051B3F 100%);
+  color: #fff;
+  font-family: 'Overpass', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 9px;
+  padding: 14px 0;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(34,52,106,0.09);
+  transition: background 0.16s, box-shadow 0.16s;
+}
+.primaryAction:hover,
+.primaryAction:focus,
+#submit_button:hover,
+#submit_button:focus {
+  background: linear-gradient(90deg, #051B3F 0%, #22346A 100%);
+  box-shadow: 0 4px 20px rgba(34,52,106,0.13);
+}
+
+/* --- Footer --- */
+.wFormFooter {
+  text-align: center;
+  font-size: 0.80rem;
+  color: #575859;
+  margin-top: var(--gap);
+  margin-bottom: 0;
+  padding: 0;
+  line-height: 1.22;
+  width: 100%;
+}
+.wFormFooter a {
+  color: #3EAAD5;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+/* --- Reset main labels to flush left, keep for checkboxes only --- */
+.label.preField,
+label.preField,
+.label,
+label {
+  margin-left: 0 !important;
+}
+#tfa_44-L,
+#tfa_99-L,
+#tfa_102-L {
+  margin-left: 6px !important;
+}
+
+/* ---- Left-align radio options --- */
+.choices,
+.oneChoice {
+  display: flex !important;
+  align-items: flex-start !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  width: 100%;
+}
+.choices label,
+.oneChoice label {
+  display: flex;
+  gap: 7px;
+  text-align: left !important;
+  width: 100% !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  margin-bottom: 6px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1rem;
+}
+.choices input[type="radio"],
+.oneChoice input[type="radio"] {
+  margin-right: 9px;
+  align-self: flex-start;
+}
+.choices label:last-child,
+.oneChoice label:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Tablet breakpoint --- */
+@media (max-width: 768px) {
+  .section.inline.group {
+    gap: calc(var(--gap) / 2);
+  }
+  /* Collapse any 3-column groups */
+  .threeColumnGroup {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* --- Desktop grid layout --- */
+@media (min-width: 1024px) {
+  .section.inline.group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--gap);
+  }
+}
+/* --- Mobile: stacked layout below 600px --- */
+@media (max-width: 600px) {
+  .wFormContainer {
+    padding: 18px 2vw 8px 2vw;
+  }
+  .section.inline.group {
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-bottom: 8px;
+  }
+  .field-container-D {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* Touch-friendly inputs */
+  .inputWrapper input,
+  .inputWrapper select {
+    padding: 14px !important;
+    min-height: 44px !important;
+  }
+}
