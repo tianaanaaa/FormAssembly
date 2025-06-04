@@ -1,0 +1,74 @@
+<style>
+  #tfa_45,
+  #tfa_45 option {
+    color: #7d7e80 !important;
+  }
+</style>
+ 
+ 
+<style>
+  #tfa_32,
+  #tfa_32 option {
+    color: #7d7e80 !important;
+  }
+</style>
+ 
+ 
+<script type="text/javascript">
+(function(){
+  const debug = true;
+ 
+  // 1) Populate UTM fields on DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', function(){
+    if(debug) console.log('Form DOM loaded');
+    const params = new URLSearchParams(window.location.search);
+    ['23','15','13','24','11'].forEach(suffix => {
+      const el = document.getElementById('tfa_' + suffix);
+      if (!el) return;
+      const key = {
+        '23':'utm_content',
+        '15':'utm_medium',
+        '13':'utm_source',
+        '24':'utm_term',
+        '11':'utm_campaign'
+      }[suffix];
+      el.value = params.get(key) || '';
+    });
+  });
+ 
+  // 2) Update the "State *" placeholder on window.load
+  function updateStatePlaceholder() {
+    const sel = document.getElementById('tfa_45');
+    if (!sel) return;
+    const emptyOpt = sel.querySelector('option[value=""]');
+    if (emptyOpt) {
+      emptyOpt.text = 'State *';
+      // emptyOpt.disabled = true; // Un-comment if you want to lock out the blank choice
+    }
+  }
+ 
+  if (window.wFORMS && wFORMS.utils && wFORMS.utils.attachEvent) {
+    wFORMS.utils.attachEvent(window, 'load', updateStatePlaceholder);
+  } else {
+    window.addEventListener('load', updateStatePlaceholder);
+  }
+})();
+</script>
+<script type="text/javascript">
+(function(){
+  function updateHeardPlaceholder() {
+    var sel = document.getElementById('tfa_32');
+    if (!sel) return;
+    var emptyOpt = sel.querySelector('option[value=""]');
+    if (emptyOpt) {
+      emptyOpt.text = 'How did you hear about us? *';
+      // emptyOpt.disabled = true; // optional: prevent re-selecting the blank
+    }
+  }
+  if (window.wFORMS && wFORMS.utils && wFORMS.utils.attachEvent) {
+    wFORMS.utils.attachEvent(window, 'load', updateHeardPlaceholder);
+  } else {
+    window.addEventListener('load', updateHeardPlaceholder);
+  }
+})();
+</script>
